@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float baseSpeed = 3.0f;
     public float maxSpeed = 6.0f; 
     public Transform hand;
-    private int vidaPersonaje = 3;
+    private int vidaPersonaje = 6;
 
     [SerializeField] UIManager uIManager;
     private void Awake()
