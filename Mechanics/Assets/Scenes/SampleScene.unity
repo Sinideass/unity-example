@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 207837657}
   - component: {fileID: 207837677}
   m_Layer: 6
-  m_Name: Personaje
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,8 +420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c7e6cfd7338bd498d1e1ba13e13c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  runSpeed: 8
+  Speed: 4
+  MaxSpeed: 8
+  currentState: 0
 --- !u!114 &207837671
 MonoBehaviour:
   m_ObjectHideFlags: 0
