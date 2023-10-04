@@ -1,39 +1,49 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum PlayerState
+{
+    Walk,
+    Run
+}
+
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private Rigidbody2D myRigidbody;
     private Animator animator;
     private Vector2 moveInput;
-    private bool isRunning;
 
-    public float baseSpeed = 3.0f;
-    public float maxSpeed = 6.0f; 
-    public Transform hand;
-    private int vidaPersonaje = 3;
+    public float Speed = 4;
+    public float MaxSpeed = 8;
+    public PlayerState currentState;
 
-    [SerializeField] UIManager uIManager;
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        currentState = PlayerState.Walk;
+        myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        float currentSpeed = isRunning ? maxSpeed : baseSpeed; 
-        Vector3 move = new Vector3(moveInput.x, moveInput.y, 0);
-        rb.velocity = move.normalized * currentSpeed;
+        float currentSpeed = (currentState == PlayerState.Run) ? MaxSpeed : Speed;
+
+        Vector2 moveDirection = moveInput.normalized;
+        Vector2 velocity = moveDirection * currentSpeed;
+        myRigidbody.velocity = velocity;
 
         if (moveInput.magnitude > 0)
         {
-            float angle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
-            hand.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+            animator.SetFloat("MoveX", moveInput.x);
+            animator.SetFloat("MoveY", moveInput.y);
+            animator.SetBool("Moving", true);
         }
-
-        Animate();
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
     }
+
     public void OnMove(InputValue input)
     {
         moveInput = input.Get<Vector2>();
@@ -41,33 +51,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnRun(InputValue input)
     {
-        isRunning = input.isPressed; 
-    }
-
-    private void Animate()
-    {
-        if (moveInput.magnitude > 0)
+        if (input.isPressed)
         {
-            animator.SetFloat("Horizontal", moveInput.x);
-            animator.SetFloat("Vertical", moveInput.y);
-            animator.Play("Run");
+            currentState = PlayerState.Run;
         }
         else
         {
-            animator.Play("Idle");
-        }
-    }
-
-    public void CausarHerida()
-    {
-        if (vidaPersonaje>0)
-        {
-            vidaPersonaje--;
-            uIManager.RestaCorazones(vidaPersonaje);
-            if (vidaPersonaje == 0)
-            {
-                Debug.Log("Hemos muerto");
-            }
+            currentState = PlayerState.Walk;
         }
     }
 }
