@@ -468,17 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38f2c582597014aa044dedb3f00621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 4301140955662101467, guid: ee94e4d89776d7d45916d6e0d1c07191, type: 3}
-  arrowGFX: {fileID: 387102095}
-  bowPowerSlider: {fileID: 2080849499}
-  bow: {fileID: 947139676}
-  arrowSpawnPoint: {fileID: 207837676}
-  bowPower: 10
-  maxBowCharge: 3
-  minBowChargeToFire: 0.32
-  bowCharge: 0
-  canFire: 1
-  inputManager: {fileID: 0}
 --- !u!224 &207837676
 RectTransform:
   m_ObjectHideFlags: 0
@@ -683,11 +672,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aff8616864a9a4e9c1e41b1fd9cc72, type: 3}
---- !u!212 &387102095 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6607677234490443513, guid: bf55e67d1276ed64ebeb8c734dd160bd, type: 3}
-  m_PrefabInstance: {fileID: 6607677234338575222}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &441470388
 GameObject:
   m_ObjectHideFlags: 0
