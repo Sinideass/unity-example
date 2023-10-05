@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     public bool IsRunButtonHold;
     public bool IsActionButtonHold;
     public bool IsSelectionButtonHold;
+
     public void OnMove(InputValue input)
     {
         MoveInput = input.Get<Vector2>();
@@ -22,10 +23,13 @@ public class InputManager : MonoBehaviour
     public void OnAction(InputValue input)
     {
         IsActionButtonHold = Convert.ToBoolean(input.Get<float>());
+
     }
 
     public void OnSelection(InputValue input)
     {
         IsSelectionButtonHold = Convert.ToBoolean(input.Get<float>());
     }
+
+  
 }
